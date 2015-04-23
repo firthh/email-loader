@@ -28,13 +28,12 @@
     copy: src=../start.sh dest=/monitor/start.sh mode=777
     sudo: true
 
-  - name: stop service
-    service: name=email-loader state=stopped
   - name: copy upstart job
     copy: src=files/upstart.conf dest=/etc/init/email-loader.conf mode=0644
     sudo: true
   - name: verfiy service
     shell: init-checkconf /etc/init/email-loader.conf
+
   - name: reloaded service
     service: name=email-loader state=reloaded
     sudo: true
